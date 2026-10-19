@@ -1,0 +1,23 @@
+# Build products
+.build/
+build/
+DerivedData/
+*.xcresult
+dist/
+*.dmg
+
+# Xcode user state
+xcuserdata/
+*.xcuserstate
+.swiftpm/xcode/xcuserdata/
+.swiftpm/configuration/
+
+# Secrets never belong in the repo
+*.pem
+*.p12
+*.cer
+*.mobileprovision
+.env
+
+# macOS
+.DS_Store
