@@ -1,6 +1,7 @@
 import Foundation
 import Testing
 @testable import OleBrowserBridge
+@testable import OleDownloadCore
 
 @Suite("Browser message validation")
 struct BrowserProtocolTests {
@@ -106,5 +107,116 @@ struct BrowserProtocolTests {
         } catch {
             #expect(error.appNotRunning)
         }
+    }
+}
+
+@Suite("Native host installation and end-to-end bridge", .serialized)
+struct NativeHostTests {
+    @Test func installsAndRemovesManifests() throws {
+        let support = TempDir()
+        let installer = NativeHostInstaller(applicationSupport: support.url)
+        let host = "/bin/echo"
+        #expect(installer.status(for: .chrome, hostPath: host) == .browserNotFound)
+        try FileManager.default.createDirectory(at: support.url.appendingPathComponent("Google/Chrome"), withIntermediateDirectories: true)
+        #expect(installer.status(for: .chrome, hostPath: host) == .notInstalled)
+        try installer.install(for: .chrome, hostPath: host)
+        try installer.install(for: .firefox, hostPath: host)
+        #expect(installer.status(for: .chrome, hostPath: host) == .installed)
+        if case .stale = installer.status(for: .chrome, hostPath: "/other") {} else { Issue.record("expected stale") }
+
+        let chrome = try JSONSerialization.jsonObject(with: Data(contentsOf: installer.manifestURL(for: .chrome))) as? [String: Any]
+        #expect(chrome?["name"] as? String == "com.oledownloadmanager.native")
+        #expect(chrome?["allowed_origins"] as? [String] == ["chrome-extension://adndpcefokbkijmccnbhfkhllcpedgfj/"])
+        let firefox = try JSONSerialization.jsonObject(with: Data(contentsOf: installer.manifestURL(for: .firefox))) as? [String: Any]
+        #expect(firefox?["allowed_extensions"] as? [String] == ["oledownloadmanager@oledownloadmanager.app"])
+
+        try installer.uninstall(for: .chrome)
+        #expect(installer.status(for: .chrome, hostPath: host) == .notInstalled)
+    }
+
+    /// Runs the real OleNativeHost executable exactly as a browser would (stdin/stdout framing,
+    /// caller origin as argument) against an in-process IPC server.
+    @Test func hostRelaysToAppAndEnforcesOrigin() async throws {
+        let hostURL = try #require(Self.hostExecutable())
+        let socket = NSTemporaryDirectory() + "oledm-e2e-\(UUID().uuidString.prefix(6)).sock"
+        let server = IPCServer(path: socket) { data in
+            guard case .success(let req) = BrowserMessageValidator.validateRequest(data, requireOrigin: true) else {
+                return (try? BrowserMessage.error(id: nil, code: "rejected", message: "bad").encoded()) ?? Data()
+            }
+            var reply = BrowserMessage(type: .downloadAccepted, id: req.id)
+            reply.downloadId = "1234"
+            return (try? reply.encoded()) ?? Data()
+        }
+        try server.start()
+        defer { server.stop() }
+
+        let ok = try Self.runHost(hostURL, args: ["chrome-extension://adndpcefokbkijmccnbhfkhllcpedgfj/"], socket: socket,
+                                  messages: [#"{"v":1,"type":"addDownload","id":"r1","url":"https://example.com/a.zip","origin":"chrome-extension://spoofed/"}"#])
+        #expect(ok.count == 1)
+        let reply = try JSONDecoder().decode(BrowserMessage.self, from: ok[0])
+        #expect(reply.type == .downloadAccepted)
+        #expect(reply.downloadId == "1234")
+
+        let invalid = try Self.runHost(hostURL, args: ["chrome-extension://adndpcefokbkijmccnbhfkhllcpedgfj/"], socket: socket,
+                                       messages: [#"{"v":1,"type":"addDownload","url":"file:///etc/passwd"}"#])
+        #expect(try JSONDecoder().decode(BrowserMessage.self, from: invalid[0]).code == "invalidField")
+
+        let refused = try Self.runHost(hostURL, args: ["chrome-extension://notallowedaaaaaaaaaaaaaaaaaaaaaa/"], socket: socket,
+                                       messages: [#"{"v":1,"type":"getStatus"}"#])
+        #expect(try JSONDecoder().decode(BrowserMessage.self, from: refused[0]).code == "unauthorizedOrigin")
+
+        // Firefox passes (manifest path, extension id).
+        let firefox = try Self.runHost(hostURL, args: ["/path/to/manifest.json", "oledownloadmanager@oledownloadmanager.app"], socket: socket,
+                                       messages: [#"{"v":1,"type":"addDownload","id":"f1","url":"https://example.com/b.zip"}"#])
+        #expect(try JSONDecoder().decode(BrowserMessage.self, from: firefox[0]).type == .downloadAccepted)
+    }
+
+    @Test func hostReportsAppNotRunning() throws {
+        let hostURL = try #require(Self.hostExecutable())
+        let replies = try Self.runHost(hostURL, args: ["chrome-extension://adndpcefokbkijmccnbhfkhllcpedgfj/"],
+                                       socket: NSTemporaryDirectory() + "absent-\(UUID().uuidString.prefix(6)).sock",
+                                       messages: [#"{"v":1,"type":"getStatus","id":"s1"}"#])
+        let status = try JSONDecoder().decode(BrowserMessage.self, from: replies[0])
+        #expect(status.connected == false)
+        #expect(status.code == "appNotRunning")
+    }
+
+    static func hostExecutable(file: String = #filePath) -> URL? {
+        var candidates: [URL] = []
+        if let override = ProcessInfo.processInfo.environment["OLEDM_NATIVE_HOST_PATH"] { candidates.append(URL(fileURLWithPath: override)) }
+        // The test bundle normally sits next to the built products (e.g. .build/debug).
+        for bundle in Bundle.allBundles where bundle.bundlePath.hasSuffix(".xctest") {
+            candidates.append(bundle.bundleURL.deletingLastPathComponent().appendingPathComponent("OleNativeHost"))
+        }
+        let root = URL(fileURLWithPath: file).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+        candidates.append(root.appendingPathComponent(".build/debug/OleNativeHost"))
+        candidates.append(root.appendingPathComponent(".build/release/OleNativeHost"))
+        return candidates.first { FileManager.default.isExecutableFile(atPath: $0.path) }
+    }
+
+    static func runHost(_ url: URL, args: [String], socket: String, messages: [String]) throws -> [Data] {
+        let process = Process()
+        process.executableURL = url
+        process.arguments = args
+        var env = ProcessInfo.processInfo.environment
+        env[IPCPaths.environmentOverride] = socket
+        process.environment = env
+        let input = Pipe(), output = Pipe()
+        process.standardInput = input
+        process.standardOutput = output
+        process.standardError = FileHandle.nullDevice
+        try process.run()
+        for m in messages { input.fileHandleForWriting.write(MessageFraming.frame(Data(m.utf8))) }
+        try input.fileHandleForWriting.close()
+        process.waitUntilExit()
+        let out = output.fileHandleForReading.readDataToEndOfFile()
+        var frames: [Data] = []
+        var i = 0
+        while i + 4 <= out.count {
+            let len = out[i..<(i + 4)].withUnsafeBytes { Int(UInt32(littleEndian: $0.loadUnaligned(as: UInt32.self))) }
+            frames.append(out[(i + 4)..<(i + 4 + len)])
+            i += 4 + len
+        }
+        return frames
     }
 }

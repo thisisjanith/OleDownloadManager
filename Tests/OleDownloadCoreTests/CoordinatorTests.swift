@@ -88,6 +88,10 @@ struct CoordinatorTests {
         let h = try CoordinatorHarness()
         let item = try h.add("/file?size=1500000&seed=22&chunkSize=16384&delayMs=10")
         #expect(await waitUntilMain { item.record.bytesReceived > 200_000 })
+        // Live statistics come from real transferred bytes.
+        #expect(await waitUntilMain { item.state == .downloading && item.currentSpeed > 0 && h.coordinator.totalSpeed > 0 })
+        #expect(await waitUntilMain { item.eta != nil })
+        #expect(item.record.progressFraction.map { $0 > 0 && $0 < 1 } == true)
         h.coordinator.pause([item.id])
         #expect(await h.waitFor(item, .paused))
         #expect(!h.coordinator.isRunning(item.id))

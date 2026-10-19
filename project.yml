@@ -1,0 +1,94 @@
+# XcodeGen spec. Regenerate the project with: xcodegen generate
+name: OleDownloadManager
+options:
+  bundleIdPrefix: com.oledownloadmanager
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+  developmentLanguage: en
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    DEAD_CODE_STRIPPING: YES
+    CODE_SIGN_STYLE: Manual
+    CODE_SIGN_IDENTITY: "-"          # ad-hoc by default; Scripts/build.sh can pass a real identity
+    DEVELOPMENT_TEAM: ""
+  configs:
+    Release:
+      SWIFT_COMPILATION_MODE: wholemodule
+      ARCHS: "arm64 x86_64"
+      ONLY_ACTIVE_ARCH: NO
+packages:
+  OleDownloadKit:
+    path: .
+targets:
+  OleDownloadManager:
+    type: application
+    platform: macOS
+    sources:
+      - path: App
+        excludes:
+          - "Resources/Info.plist"
+    dependencies:
+      - package: OleDownloadKit
+        product: OleDownloadCore
+      - target: OleNativeHost
+        embed: true
+        codeSign: true
+        copy:
+          destination: wrapper
+          subpath: Contents/Helpers
+    settings:
+      base:
+        PRODUCT_NAME: OleDownloadManager
+        PRODUCT_BUNDLE_IDENTIFIER: com.oledownloadmanager.app
+        INFOPLIST_FILE: App/Resources/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ENABLE_HARDENED_RUNTIME: YES
+        COMBINE_HIDPI_IMAGES: YES
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks"
+  OleNativeHost:
+    type: tool
+    platform: macOS
+    sources:
+      - path: Sources/OleNativeHost
+    dependencies:
+      - package: OleDownloadKit
+        product: OleBrowserBridge
+    settings:
+      base:
+        PRODUCT_NAME: OleNativeHost
+        PRODUCT_BUNDLE_IDENTIFIER: com.oledownloadmanager.nativehost
+        ENABLE_HARDENED_RUNTIME: YES
+        SKIP_INSTALL: YES
+  OleDownloadManagerUITests:
+    type: bundle.ui-testing
+    platform: macOS
+    sources:
+      - path: Tests/OleDownloadManagerUITests
+      - path: Tests/OleDownloadCoreTests/Support/TestHTTPServer.swift
+    dependencies:
+      - target: OleDownloadManager
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.oledownloadmanager.uitests
+        TEST_TARGET_NAME: OleDownloadManager
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  OleDownloadManager:
+    build:
+      targets:
+        OleDownloadManager: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - OleDownloadManagerUITests
+    archive:
+      config: Release

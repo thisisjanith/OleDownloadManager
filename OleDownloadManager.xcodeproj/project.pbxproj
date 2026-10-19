@@ -1,0 +1,692 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02AB646B78C86FF00B813043 /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F1C17CC4CAE9AD43150A7 /* LaunchAtLogin.swift */; };
+		05110B526F1ACDF87C6F66E3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653B005CE0B44D1384B1D22A /* main.swift */; };
+		403114882674981E3FD06B71 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE402ECF44B2B892A0CEF09B /* SettingsView.swift */; };
+		41E5C2F795162628F3652678 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC173ADCF5516CC58ED61EC /* AppDelegate.swift */; };
+		430F10EDC77E76C039AD880A /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBCF8A0708C30884A8D29DF /* AppModel.swift */; };
+		51A6D6DF26DEDFF2C3366D4D /* DownloadDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ACE72E08EAB5F07696727A /* DownloadDetailsView.swift */; };
+		5B539957125F4162BF0C960A /* OleDownloadCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2914102F1170968F9171B400 /* OleDownloadCore */; };
+		5E545D2CC064627B4697F10C /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DA4E64A4D546EBFDB4B93 /* NotificationService.swift */; };
+		65C2D6D88C780ACD4A2363F0 /* DownloadListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1BAA97DE080BAA97ED154 /* DownloadListView.swift */; };
+		815078F1BE34D0F76BC7B7AA /* AddDownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BA5962D70FADA793DEA0C4 /* AddDownloadView.swift */; };
+		84261B45A8CB68094B469565 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EB21A961E5504F0C6866B81 /* Assets.xcassets */; };
+		8B326E6FC8DA75A0EA604CD5 /* TestHTTPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575A4CF09B81B967F1D817B /* TestHTTPServer.swift */; };
+		A10AF5BC54E6D18E10A15C78 /* OleBrowserBridge in Frameworks */ = {isa = PBXBuildFile; productRef = CB77B0FEE900E009E56580AF /* OleBrowserBridge */; };
+		AA32A993D8A036CA3821FA47 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 77D9FCF350B2EFCE1D3440CB /* PrivacyInfo.xcprivacy */; };
+		BC225E98CEB9489579AB72B9 /* OleNativeHost in Embed Dependencies */ = {isa = PBXBuildFile; fileRef = 74AF09D90EEE205C50264DBB /* OleNativeHost */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C424CF2366CFC53968FCC7D4 /* OleDownloadManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352BA091AFFB27C0CFFCC72C /* OleDownloadManagerApp.swift */; };
+		C9204FC3EE573724BB2795DD /* MainWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E77194B8F8C67CFB233B5A /* MainWindowView.swift */; };
+		D1DAAB8ED0E0EB8998BD047C /* DownloadRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A572DFD5FC02E228CA5EBA81 /* DownloadRowView.swift */; };
+		D40D311D1F1C9F0101B7260E /* OleDownloadManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2898D695EEF4915043B35 /* OleDownloadManagerUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		596E1860A43DC4CDCCBBA72C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B9A064029831B9480DEC54C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0534B2E903F2C34DFBD9C3EB;
+			remoteInfo = OleDownloadManager;
+		};
+		9D8E4BF95E238CA6465E0FCD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B9A064029831B9480DEC54C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CA50F3426B259E97B52BBAF;
+			remoteInfo = OleNativeHost;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		820C93BB4E3189B0A39A2FD9 /* Embed Dependencies */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Helpers;
+			dstSubfolderSpec = 1;
+			files = (
+				BC225E98CEB9489579AB72B9 /* OleNativeHost in Embed Dependencies */,
+			);
+			name = "Embed Dependencies";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		08E77194B8F8C67CFB233B5A /* MainWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowView.swift; sourceTree = "<group>"; };
+		1575A4CF09B81B967F1D817B /* TestHTTPServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHTTPServer.swift; sourceTree = "<group>"; };
+		1AB1BAA97DE080BAA97ED154 /* DownloadListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadListView.swift; sourceTree = "<group>"; };
+		1EB21A961E5504F0C6866B81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		24BA5962D70FADA793DEA0C4 /* AddDownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDownloadView.swift; sourceTree = "<group>"; };
+		2EBCF8A0708C30884A8D29DF /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		352BA091AFFB27C0CFFCC72C /* OleDownloadManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OleDownloadManagerApp.swift; sourceTree = "<group>"; };
+		653B005CE0B44D1384B1D22A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		74AF09D90EEE205C50264DBB /* OleNativeHost */ = {isa = PBXFileReference; includeInIndex = 0; path = OleNativeHost; sourceTree = BUILT_PRODUCTS_DIR; };
+		77D9FCF350B2EFCE1D3440CB /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		807381E2E3FCB19C79BAA723 /* OleDownloadManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OleDownloadManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		881F1C17CC4CAE9AD43150A7 /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
+		933ABFDF6826564A33D539F0 /* OleDownloadManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OleDownloadManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A572DFD5FC02E228CA5EBA81 /* DownloadRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadRowView.swift; sourceTree = "<group>"; };
+		AC1DA4E64A4D546EBFDB4B93 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		BAB2898D695EEF4915043B35 /* OleDownloadManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OleDownloadManagerUITests.swift; sourceTree = "<group>"; };
+		CE402ECF44B2B892A0CEF09B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D9ACE72E08EAB5F07696727A /* DownloadDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadDetailsView.swift; sourceTree = "<group>"; };
+		EBC173ADCF5516CC58ED61EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ECE03170D32EF939013183C2 /* OleDownloadMgr */ = {isa = PBXFileReference; lastKnownFileType = folder; name = OleDownloadMgr; path = .; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4E40A2494DE6B047A77FD240 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10AF5BC54E6D18E10A15C78 /* OleBrowserBridge in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB278F228599AE44A4D55767 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B539957125F4162BF0C960A /* OleDownloadCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0237EC3D6306AFDEFDE07A40 /* OleNativeHost */ = {
+			isa = PBXGroup;
+			children = (
+				653B005CE0B44D1384B1D22A /* main.swift */,
+			);
+			path = OleNativeHost;
+			sourceTree = "<group>";
+		};
+		0A759ED5E7AB38F924EE96EC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1EB21A961E5504F0C6866B81 /* Assets.xcassets */,
+				77D9FCF350B2EFCE1D3440CB /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1E49E1B16143AB33C4593027 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				ECE03170D32EF939013183C2 /* OleDownloadMgr */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		2E2E043E35558165A8607A96 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				1575A4CF09B81B967F1D817B /* TestHTTPServer.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		33BC6DF065B2AEBCA41DC834 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				24BA5962D70FADA793DEA0C4 /* AddDownloadView.swift */,
+				D9ACE72E08EAB5F07696727A /* DownloadDetailsView.swift */,
+				1AB1BAA97DE080BAA97ED154 /* DownloadListView.swift */,
+				A572DFD5FC02E228CA5EBA81 /* DownloadRowView.swift */,
+				08E77194B8F8C67CFB233B5A /* MainWindowView.swift */,
+				CE402ECF44B2B892A0CEF09B /* SettingsView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		47CA0D6D9CBCF1F0B08D142D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				EBC173ADCF5516CC58ED61EC /* AppDelegate.swift */,
+				2EBCF8A0708C30884A8D29DF /* AppModel.swift */,
+				352BA091AFFB27C0CFFCC72C /* OleDownloadManagerApp.swift */,
+				0A759ED5E7AB38F924EE96EC /* Resources */,
+				7ACF42449925FFE876FBF16E /* Services */,
+				33BC6DF065B2AEBCA41DC834 /* UI */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		6A2B99CEDF8BFC64B69003A8 = {
+			isa = PBXGroup;
+			children = (
+				47CA0D6D9CBCF1F0B08D142D /* App */,
+				1E49E1B16143AB33C4593027 /* Packages */,
+				84A5DC2E251584685F0EBAC1 /* Sources */,
+				7C81509A8B4634B7CEAB73EE /* Tests */,
+				B7F6B0A547708164589A1A23 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7ACF42449925FFE876FBF16E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				881F1C17CC4CAE9AD43150A7 /* LaunchAtLogin.swift */,
+				AC1DA4E64A4D546EBFDB4B93 /* NotificationService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		7C81509A8B4634B7CEAB73EE /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				BA13130FCF4D408F3ECD0F88 /* OleDownloadCoreTests */,
+				B6AC36B528285873F40BB998 /* OleDownloadManagerUITests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		84A5DC2E251584685F0EBAC1 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				0237EC3D6306AFDEFDE07A40 /* OleNativeHost */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		B6AC36B528285873F40BB998 /* OleDownloadManagerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BAB2898D695EEF4915043B35 /* OleDownloadManagerUITests.swift */,
+			);
+			path = OleDownloadManagerUITests;
+			sourceTree = "<group>";
+		};
+		B7F6B0A547708164589A1A23 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				933ABFDF6826564A33D539F0 /* OleDownloadManager.app */,
+				807381E2E3FCB19C79BAA723 /* OleDownloadManagerUITests.xctest */,
+				74AF09D90EEE205C50264DBB /* OleNativeHost */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BA13130FCF4D408F3ECD0F88 /* OleDownloadCoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				2E2E043E35558165A8607A96 /* Support */,
+			);
+			path = OleDownloadCoreTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0534B2E903F2C34DFBD9C3EB /* OleDownloadManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 070695491B840D5C275D6A90 /* Build configuration list for PBXNativeTarget "OleDownloadManager" */;
+			buildPhases = (
+				3D6616475B84091D61219456 /* Sources */,
+				82A3F9AB032E42C568D3E655 /* Resources */,
+				EB278F228599AE44A4D55767 /* Frameworks */,
+				820C93BB4E3189B0A39A2FD9 /* Embed Dependencies */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BDF2CEDD79018BAB3386D286 /* PBXTargetDependency */,
+			);
+			name = OleDownloadManager;
+			packageProductDependencies = (
+				2914102F1170968F9171B400 /* OleDownloadCore */,
+			);
+			productName = OleDownloadManager;
+			productReference = 933ABFDF6826564A33D539F0 /* OleDownloadManager.app */;
+			productType = "com.apple.product-type.application";
+		};
+		403C6071EF225A12CF2506AE /* OleDownloadManagerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57AF34E5913050BE498646B3 /* Build configuration list for PBXNativeTarget "OleDownloadManagerUITests" */;
+			buildPhases = (
+				0BB07CE845768F9D011972E0 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E17396073B5191E3C247C86 /* PBXTargetDependency */,
+			);
+			name = OleDownloadManagerUITests;
+			packageProductDependencies = (
+			);
+			productName = OleDownloadManagerUITests;
+			productReference = 807381E2E3FCB19C79BAA723 /* OleDownloadManagerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		8CA50F3426B259E97B52BBAF /* OleNativeHost */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 19EC4B362EB2C20B4B9FB70D /* Build configuration list for PBXNativeTarget "OleNativeHost" */;
+			buildPhases = (
+				A8C37B583AF3A20DB5A55F3C /* Sources */,
+				4E40A2494DE6B047A77FD240 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OleNativeHost;
+			packageProductDependencies = (
+				CB77B0FEE900E009E56580AF /* OleBrowserBridge */,
+			);
+			productName = OleNativeHost;
+			productReference = 74AF09D90EEE205C50264DBB /* OleNativeHost */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B9A064029831B9480DEC54C9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					0534B2E903F2C34DFBD9C3EB = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Manual;
+					};
+					403C6071EF225A12CF2506AE = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Manual;
+						TestTargetID = 0534B2E903F2C34DFBD9C3EB;
+					};
+					8CA50F3426B259E97B52BBAF = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = BAEB026C67AFEAEA036A5399 /* Build configuration list for PBXProject "OleDownloadManager" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 6A2B99CEDF8BFC64B69003A8;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				AAD7669A403A3065BF100A33 /* XCLocalSwiftPackageReference "." */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = B7F6B0A547708164589A1A23 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0534B2E903F2C34DFBD9C3EB /* OleDownloadManager */,
+				8CA50F3426B259E97B52BBAF /* OleNativeHost */,
+				403C6071EF225A12CF2506AE /* OleDownloadManagerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		82A3F9AB032E42C568D3E655 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84261B45A8CB68094B469565 /* Assets.xcassets in Resources */,
+				AA32A993D8A036CA3821FA47 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0BB07CE845768F9D011972E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D40D311D1F1C9F0101B7260E /* OleDownloadManagerUITests.swift in Sources */,
+				8B326E6FC8DA75A0EA604CD5 /* TestHTTPServer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D6616475B84091D61219456 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				815078F1BE34D0F76BC7B7AA /* AddDownloadView.swift in Sources */,
+				41E5C2F795162628F3652678 /* AppDelegate.swift in Sources */,
+				430F10EDC77E76C039AD880A /* AppModel.swift in Sources */,
+				51A6D6DF26DEDFF2C3366D4D /* DownloadDetailsView.swift in Sources */,
+				65C2D6D88C780ACD4A2363F0 /* DownloadListView.swift in Sources */,
+				D1DAAB8ED0E0EB8998BD047C /* DownloadRowView.swift in Sources */,
+				02AB646B78C86FF00B813043 /* LaunchAtLogin.swift in Sources */,
+				C9204FC3EE573724BB2795DD /* MainWindowView.swift in Sources */,
+				5E545D2CC064627B4697F10C /* NotificationService.swift in Sources */,
+				C424CF2366CFC53968FCC7D4 /* OleDownloadManagerApp.swift in Sources */,
+				403114882674981E3FD06B71 /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8C37B583AF3A20DB5A55F3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05110B526F1ACDF87C6F66E3 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6E17396073B5191E3C247C86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0534B2E903F2C34DFBD9C3EB /* OleDownloadManager */;
+			targetProxy = 596E1860A43DC4CDCCBBA72C /* PBXContainerItemProxy */;
+		};
+		BDF2CEDD79018BAB3386D286 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CA50F3426B259E97B52BBAF /* OleNativeHost */;
+			targetProxy = 9D8E4BF95E238CA6465E0FCD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		069EE3C1CA77E0B2400CB854 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.oledownloadmanager.uitests;
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = OleDownloadManager;
+			};
+			name = Release;
+		};
+		0DE21470A26CEBDD2C874EB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "arm64 x86_64";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		3976834D38B0732C507A40C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.oledownloadmanager.nativehost;
+				PRODUCT_NAME = OleNativeHost;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		462B989E250CFCCA6C80E751 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = App/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.oledownloadmanager.app;
+				PRODUCT_NAME = OleDownloadManager;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		6239816E4C70194A86A19DEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.oledownloadmanager.uitests;
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = OleDownloadManager;
+			};
+			name = Debug;
+		};
+		D519F0FC1D3828CF4B1E10E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = App/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.oledownloadmanager.app;
+				PRODUCT_NAME = OleDownloadManager;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D6F4EB843CB207CE554031B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.oledownloadmanager.nativehost;
+				PRODUCT_NAME = OleNativeHost;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		F7D9AD0D8B17066598B80E1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		070695491B840D5C275D6A90 /* Build configuration list for PBXNativeTarget "OleDownloadManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D519F0FC1D3828CF4B1E10E6 /* Debug */,
+				462B989E250CFCCA6C80E751 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		19EC4B362EB2C20B4B9FB70D /* Build configuration list for PBXNativeTarget "OleNativeHost" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3976834D38B0732C507A40C8 /* Debug */,
+				D6F4EB843CB207CE554031B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		57AF34E5913050BE498646B3 /* Build configuration list for PBXNativeTarget "OleDownloadManagerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6239816E4C70194A86A19DEC /* Debug */,
+				069EE3C1CA77E0B2400CB854 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BAEB026C67AFEAEA036A5399 /* Build configuration list for PBXProject "OleDownloadManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7D9AD0D8B17066598B80E1F /* Debug */,
+				0DE21470A26CEBDD2C874EB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		AAD7669A403A3065BF100A33 /* XCLocalSwiftPackageReference "." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = .;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2914102F1170968F9171B400 /* OleDownloadCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = OleDownloadCore;
+		};
+		CB77B0FEE900E009E56580AF /* OleBrowserBridge */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = OleBrowserBridge;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = B9A064029831B9480DEC54C9 /* Project object */;
+}
