@@ -156,3 +156,47 @@ public struct ResourceValidators: Codable, Sendable, Equatable {
         return false
     }
 }
+
+/// Validation for user-supplied request headers.
+public enum HTTPHeaderValidator {
+    /// Headers the engine controls itself and that users may not override.
+    static let reserved: Set<String> = [
+        "host", "range", "if-range", "content-length", "transfer-encoding", "connection", "accept-encoding",
+        "upgrade", "te", "trailer", "keep-alive", "proxy-connection", "expect",
+    ]
+
+    public enum Problem: Error, Equatable, CustomStringConvertible {
+        case invalidName(String), invalidValue(String), reserved(String)
+        public var description: String {
+            switch self {
+            case .invalidName(let n): "“\(n)” is not a valid header name."
+            case .invalidValue(let n): "The value of “\(n)” contains invalid characters."
+            case .reserved(let n): "“\(n)” is managed by OleDownloadManager and can't be set manually."
+            }
+        }
+    }
+
+    static let tokenChars = CharacterSet(charactersIn: "!#$%&'*+-.^_`|~0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+
+    public static func validate(name: String, value: String) throws(Problem) {
+        let n = name.trimmingCharacters(in: .whitespaces)
+        guard !n.isEmpty, n.count <= 128, n.unicodeScalars.allSatisfy({ tokenChars.contains($0) }) else { throw .invalidName(name) }
+        guard !reserved.contains(n.lowercased()) else { throw .reserved(n) }
+        guard value.count <= 8192, !value.unicodeScalars.contains(where: { $0 == "\r" || $0 == "\n" || $0 == "\0" }) else { throw .invalidValue(n) }
+    }
+
+    /// Parses "Name: value" lines, as typed into the Add Download dialog.
+    public static func parse(_ text: String) throws(Problem) -> [String: String] {
+        var result: [String: String] = [:]
+        for line in text.split(whereSeparator: \.isNewline) {
+            let trimmed = line.trimmingCharacters(in: .whitespaces)
+            if trimmed.isEmpty { continue }
+            guard let colon = trimmed.firstIndex(of: ":") else { throw .invalidName(trimmed) }
+            let name = String(trimmed[..<colon]).trimmingCharacters(in: .whitespaces)
+            let value = String(trimmed[trimmed.index(after: colon)...]).trimmingCharacters(in: .whitespaces)
+            try validate(name: name, value: value)
+            result[name] = value
+        }
+        return result
+    }
+}
