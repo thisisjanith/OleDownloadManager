@@ -197,6 +197,7 @@ final class DataTransfer: @unchecked Sendable {
 /// Owns one URLSession per engine run. The session's delegate is this object; `invalidate()` breaks
 /// the session → delegate retain cycle.
 final class TransferSession: NSObject, URLSessionDataDelegate, @unchecked Sendable {
+    // Assigned at the end of init (the session needs `self` as its delegate), never nil afterwards.
     private var session: URLSession!
     private let lock = NSLock()
     private var transfers: [Int: DataTransfer] = [:]

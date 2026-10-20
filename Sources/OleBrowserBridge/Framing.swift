@@ -25,7 +25,10 @@ public enum MessageFraming {
         let data = frame(payload)
         var offset = 0
         while offset < data.count {
-            let n = data.withUnsafeBytes { buf in write(fd, buf.baseAddress!.advanced(by: offset), data.count - offset) }
+            let n = data.withUnsafeBytes { buf -> Int in
+                guard let base = buf.baseAddress else { return 0 }
+                return write(fd, base.advanced(by: offset), data.count - offset)
+            }
             if n < 0 {
                 if errno == EINTR { continue }
                 if errno == EAGAIN || errno == EWOULDBLOCK { throw .timedOut }
@@ -39,7 +42,10 @@ public enum MessageFraming {
         var buffer = Data(count: count)
         var offset = 0
         while offset < count {
-            let n = buffer.withUnsafeMutableBytes { buf in read(fd, buf.baseAddress!.advanced(by: offset), count - offset) }
+            let n = buffer.withUnsafeMutableBytes { buf -> Int in
+                guard let base = buf.baseAddress else { return 0 }
+                return read(fd, base.advanced(by: offset), count - offset)
+            }
             if n == 0 { throw .endOfStream }
             if n < 0 {
                 if errno == EINTR { continue }

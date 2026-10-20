@@ -175,7 +175,7 @@ struct CoordinatorTests {
             if firstBatch.isEmpty { firstBatch = Set(items.filter { $0.state != .queued }.map(\.id)) }
             return items.allSatisfy { $0.state == .completed }
         }
-        #expect(done)
+        #expect(done, "states: \(items.map { "\($0.state.rawValue) \($0.record.bytesReceived)/\($0.record.expectedLength ?? -1) running=\(h.coordinator.isRunning($0.id)) err=\($0.record.lastError?.description ?? "-")" })")
         #expect(maxActive <= 2)
         #expect(maxActive == 2)
         #expect(firstBatch.contains(items[4].id))

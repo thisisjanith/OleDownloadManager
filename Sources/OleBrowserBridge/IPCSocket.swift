@@ -121,13 +121,14 @@ public final class IPCServer: @unchecked Sendable {
         let fd = socket(AF_UNIX, SOCK_STREAM, 0)
         guard fd >= 0 else { throw .socketFailed(errno) }
         var addr = try UnixAddress.make(path)
-        let oldMask = umask(0o177)
+        // No umask juggling here: umask is process-wide and would also affect directories other
+        // threads create at the same moment. The socket sits in a 0700 directory and is restricted
+        // to 0600 right after bind, before listen() accepts any connection.
         let bound = withUnsafePointer(to: &addr) {
             $0.withMemoryRebound(to: sockaddr.self, capacity: 1) { bind(fd, $0, socklen_t(MemoryLayout<sockaddr_un>.size)) }
         }
-        umask(oldMask)
         guard bound == 0 else { let e = errno; close(fd); throw .bindFailed(e) }
-        chmod(path, 0o600)
+        guard chmod(path, 0o600) == 0 else { let e = errno; close(fd); unlink(path); throw .bindFailed(e) }
         guard listen(fd, 16) == 0 else { let e = errno; close(fd); throw .bindFailed(e) }
         _ = fcntl(fd, F_SETFL, fcntl(fd, F_GETFL) | O_NONBLOCK)
 

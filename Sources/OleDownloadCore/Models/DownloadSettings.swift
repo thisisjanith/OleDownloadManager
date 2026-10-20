@@ -120,8 +120,9 @@ public struct AppSettings: Codable, Sendable, Equatable {
         s.schedule.startMinute = s.schedule.startMinute.clamped(to: 0...1439)
         s.schedule.stopMinute = s.schedule.stopMinute.clamped(to: 0...1439)
         s.schedule.weekdays = s.schedule.weekdays.filter { (1...7).contains($0) }
-        if !s.categories.contains(where: { $0.id == FileCategory.otherID }) {
-            s.categories.append(FileCategory.defaults.last!)  // the defaults always end with "Other"
+        if !s.categories.contains(where: { $0.id == FileCategory.otherID }),
+           let other = FileCategory.defaults.first(where: { $0.id == FileCategory.otherID }) {
+            s.categories.append(other)
         }
         return s
     }

@@ -135,7 +135,11 @@ final class AppModel {
         } catch {
             // The database could not be opened (e.g. a newer schema). Keep the app usable with an
             // in-memory store and tell the user instead of crashing.
-            repository = (try? DownloadRepository(database: .inMemory()))!
+            do {
+                repository = try DownloadRepository(database: .inMemory())
+            } catch {
+                fatalError("OleDownloadManager could not create even an in-memory database: \(error)")
+            }
             alertMessage = "The download database could not be opened: \(error). History will not be saved this session."
         }
         if isUITesting, let downloads = env["OLEDM_DOWNLOAD_DIR"], repository.loadSettings() == nil {
@@ -154,6 +158,11 @@ final class AppModel {
         coordinator = DownloadCoordinator(environment: environment)
         notifications = NotificationService(enabled: !isUITesting)
         coordinator.onEvent = { [weak self] event in self?.handle(event) }
+        notifications.onActivate = { [weak self] id in
+            NSApp.activate()
+            self?.sidebar = .all
+            self?.selection = [id]
+        }
     }
 
     func start() {
