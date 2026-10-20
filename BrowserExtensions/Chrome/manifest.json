@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "OleDownloadManager",
+  "version": "1.0.0",
+  "description": "Send downloads to the OleDownloadManager app on your Mac.",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwVhTbCIeKUB00DXEAVWQDTEY7sV50qm3P3HljsBI5JDrEgYH1uAW1pNUHz6h3N7rJ5EXM+LIAdH+aCsPQQUGpkr/7UAaA9Y/WZBVS4zDU7dQ+HzH62zIXoBktXyOMHI+RW+PY/5dKZat8RESkxg8BLBlyrYsqKeLYtA1fm4kM7rwyIGKTxt7HHuE9rDfyOPhtT888F8+cqoe/qAhWPei2b9BD53bBa+CCgbJlZ7hPyjCv3Bka1ayVr3O/UfOWDqm1K215qn9DkCosNT2EW5TKrbq2lKg7yU6EDyIXwYl2DGFh7er+zJajz2g8OSDtee8KY7kuT1WebJefW4q0icfBQIDAQAB",
+  "minimum_chrome_version": "116",
+  "permissions": ["nativeMessaging", "contextMenus", "downloads", "storage"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_popup": "popup.html", "default_title": "OleDownloadManager", "default_icon": { "16": "icons/icon-16.png", "32": "icons/icon-32.png" } },
+  "icons": { "16": "icons/icon-16.png", "48": "icons/icon-48.png", "128": "icons/icon-128.png" }
+}

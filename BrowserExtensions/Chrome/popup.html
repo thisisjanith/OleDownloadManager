@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>OleDownloadManager</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img src="icons/icon-32.png" alt="" width="20" height="20">
+    <h1>OleDownloadManager</h1>
+  </header>
+  <p id="status" class="status" role="status">Checking connection…</p>
+
+  <section>
+    <label class="row"><input type="checkbox" id="intercept"> Capture downloads automatically</label>
+    <label class="row">When sent to the app
+      <select id="mode">
+        <option value="default">Use the app's setting</option>
+        <option value="start">Start immediately</option>
+        <option value="queue">Add to queue</option>
+      </select>
+    </label>
+    <label class="stack">File types to capture
+      <input type="text" id="extensions" spellcheck="false" aria-describedby="ext-help">
+    </label>
+    <p id="ext-help" class="help">Only downloads with these extensions are captured. Other links are left to the browser.</p>
+  </section>
+
+  <section>
+    <label class="stack">Send a link
+      <span class="inline"><input type="url" id="url" placeholder="https://…"><button id="send">Send</button></span>
+    </label>
+    <p id="result" class="help" role="status"></p>
+  </section>
+
+  <footer class="help">Cookies and browsing history are never sent to the app.</footer>
+  <script src="logic.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
